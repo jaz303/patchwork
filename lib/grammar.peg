@@ -46,14 +46,17 @@ integer
 /* Productions */
 
 Program
-    = Node*
+    = Pipeline*
+
+Pipeline
+    = Node ('->' _ Node)*
 
 Node
     = NodeReference
     / AtomicNode
 
 NodeReference
-    = '#' Ident {
+    = '#' Ident _ {
         console.log("node reference");
     }
 

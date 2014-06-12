@@ -1,6 +1,8 @@
 foo
 foo#bar
 
+foo -> bar -> #baz -> bleem
+
 foo.bar.baz(a=10, b=20)
 
 #foobar
