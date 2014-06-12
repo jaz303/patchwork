@@ -46,7 +46,16 @@ integer
 /* Productions */
 
 Program
-    = Pipeline*
+    = TopLevel*
+
+TopLevel
+    = Assignment
+    / Pipeline
+
+Assignment
+    = Ident _ ':=' _ Pipeline {
+        console.log("assignment");
+    }
 
 Pipeline
     = Node ('->' _ Node)*
