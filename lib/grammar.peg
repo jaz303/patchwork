@@ -1,0 +1,104 @@
+{
+    
+}
+
+/* Helpers */
+
+_
+    = [ \t\r\n]*
+
+ident_start
+    = [a-zA-Z_]
+
+ident_rest
+    = [a-zA-Z0-9_]
+
+ident
+    = $( ident_start ident_rest* )
+
+string
+    = "'" chars:string_char_single* "'" { return chars.join(''); }
+    / '"' chars:string_char_double* '"' { return chars.join(''); }
+
+string_char_single
+    = escape_char
+    / $ ( !['\\] . )
+
+string_char_double
+    = escape_char
+    / $ ( !["\\] . )
+
+escape_char
+    = "\\n"     { return "\n"; }
+    / "\\r"     { return "\r"; }
+    / "\\t"     { return "\t"; }
+    / "\\'"     { return "'"; }
+    / '\\"'     { return '"'; }
+    / '\\\\'    { return "\\"; }
+
+float
+    = $ ( [0-9]+ '.' [0-9]+ )
+
+integer
+    = $ ("0" ![0-9] )
+    / $ ( [1-9] [0-9]* )
+
+/* Productions */
+
+Program
+    = Node*
+
+Node
+    = NodeReference
+    / AtomicNode
+
+NodeReference
+    = '#' Ident {
+        console.log("node reference");
+    }
+
+AtomicNode
+    = NodeType NodeId? NodeParams? _ {
+        console.log("atomic node!");
+    }
+
+NodeType
+    = Ident ('.' Ident)*
+
+NodeId
+    = '#' Ident
+
+NodeParams
+    = '(' _ NodeParamList? ')' _
+
+NodeParamList
+    = NodeParam _ (',' _ NodeParam)*
+
+NodeParam
+    = Ident _ '=' _ Value _
+
+Ident
+    = ident
+
+Value
+    = Integer
+    / Float
+    / Boolean
+    / Keyword
+    / String
+
+Integer
+    = integer
+
+Float
+    = float
+
+Boolean
+    = 'true'
+    / 'false'
+
+Keyword
+    = ident
+
+String
+    = string

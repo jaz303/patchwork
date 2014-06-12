@@ -1,0 +1,25 @@
+{
+  "name": "patchwork",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "set -e; for t in test/*.js; do node $t; done"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jaz303/patchwork.git"
+  },
+  "author": "Jason Frame <jason@onehackoranother.com> (http://jasonframe.co.uk)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jaz303/patchwork/issues"
+  },
+  "homepage": "https://github.com/jaz303/patchwork",
+  "devDependencies": {
+    "tape": "~2.12.3",
+    "uglify-js": "~2.4.13",
+    "pegjs": "~0.8.0"
+  },
+  "dependencies": {}
+}
