@@ -61,18 +61,26 @@ Pipeline
     = Node ('->' _ Node)*
 
 Node
-    = NodeReference
-    / AtomicNode
+    = NodeReference Selector? _
+    / AtomicNode Selector? _
 
 NodeReference
-    = '#' Ident _ {
+    = '#' Ident {
         console.log("node reference");
     }
 
 AtomicNode
-    = NodeType NodeId? NodeParams? _ {
+    = NodeType NodeId? NodeParams? {
         console.log("atomic node!");
     }
+
+Selector
+    = ':' PortRef
+    / ':{' _ PortRef _ (',' PortRef _)* '}'
+
+PortRef
+    = Ident
+    / Integer
 
 NodeType
     = Ident ('.' Ident)*

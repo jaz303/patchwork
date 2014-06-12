@@ -8,3 +8,6 @@ foo.bar.baz(a=10, b=20)
 #foobar
 
 bleem := foo -> bar
+
+
+foo:{a,b,c} -> bar:{c,d,e}
