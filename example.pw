@@ -1,0 +1,31 @@
+canvas#canvas(width=500,height=500)
+
+integer#radius(value=100)
+color#fill(value=#ff0000)
+
+#radius -> #circle:radius
+#fill -> #circle:fill
+
+
+
+
+circle(radius=100) -> #canvas
+
+
+
+canvas := canvas(width=500,height=500)
+circle := circle(radius=100)
+radius := integer(value=100)
+fill   := color(value=#ff0000)
+
+#radius -> #circle:radius
+#fill -> #circle:fill
+#circle -> #canvas
+
+{ integer#radius(value=100), color#fill(value=#ff0000) }
+	-> circle#circle:{radius,fill}
+	-> canvas#canvas
+
+foo = {
+	
+}
